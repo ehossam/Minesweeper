@@ -4,23 +4,24 @@ on: [push, pull_request]
 jobs:
   code-analysis:
     name: .NET Code Analysis runner
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       # Checkout your code repository to scan
     - uses: actions/checkout@v2
 
-    # Run NuGet restore for the solution at repo root
+    # Run NuGet restore
     - name: Run NuGet restore
-      run: dotnet restore
+      run: dotnet restore .\MineSweeper.sln
 
-    # Run code analysis for the solution at repo root
+    # Run .NET Code Analysis
     - name: Run .NET Code Analysis
-      uses: dotnet/code-analysis@main
+      uses: ./
       id: code-analysis
       with:
-        build-breaking: false
+        project: .\MineSweeper.sln
+        build-breaking: true
+        all-categories: all
 
     # Upload the analysis results file
     - name: Upload analysis results
