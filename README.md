@@ -53,7 +53,7 @@ The project is configured with 2 actions (versionsweeper and code-analysis) that
 - To start a game with a new configuration or just restart the game, the face image should be pressed.
 - The locations of mines are determined randomly and their number is determined by the board size such that the number of mines equals 20% of the width*Height of board, approximated to the highest integer, i.e. if the number of tiles is calculated to be 57, it will become 58.
 - The first move determines the location of the mines. The locations of mines are not pre-determined before making the first move. This ensures that the first move, tile reveal, will always succeed and that tile will never contain a mine. Also, adjacent tiles to this first tile will never be mine tiles.
-- Adjacent tile are considered to be any tile adjacent to the current tile horizontally, vertically, and diagonally. This means that any tile except for the edges (first or last column or row) should have 9 adjacent tiles.
+- Adjacent tile are considered to be any tile adjacent to the current tile horizontally, vertically, and diagonally. This means that any tile except for the edges (first or last column or row) should have 8 adjacent tiles.
 - The number displayed on each tile represents the number of adjacent mine tiles.
 - When revealing a tile that has no adjacent mine tiles, it will reveal all of these adjacent tiles, and the same will occur for such revealed tiles as well. Please note that in this scenario, if a flag is added on any of these adjacent tiles, it will be removed and the number of remaining flags will be incremented accordingly.
 - The face image changes from the smiley face to a surprised face whenever the user reveals a new tile.
