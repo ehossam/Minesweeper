@@ -1,5 +1,5 @@
 ## Minesweeper
-This minesweeper game is built in C# using ASP.Net and Blazor WebAssembly.
+This minesweeper game is built in C# using Blazor WebAssembly as a client rendered ASP.NET Core solution.
 
 ## Demos
 Please check the Demos directory for 2 demos displaying both success and failure scenarios.
@@ -11,7 +11,7 @@ Please check the Demos directory for 2 demos displaying both success and failure
 - On the very top of the board, the user can configure the width and height of the board.
 - Also, on the top left of the board, a counter displays the remaining number of flags. At the beginning of a game, this counter shows the number of the mines inside the board.
 - To the right of the counter, a smiley face is displayed and can be clicked to start or restart a game. Such face changes according to the state of the game, either in-progress, won, or lost.
-- To the right of the face, a stopwatch is displayed to show the spent time solving the game. The stopwatch starts when the smile face is clicked and keeps counting to 999 seconds as the maximum threshold.
+- To the right of the face, a stopwatch is displayed to show the spent time solving the game. The stopwatch starts when the smiley face is clicked and keeps counting to 999 seconds as the maximum threshold.
 
 ## Stylesheets
 The style of the game board is intentionally made to be similar to the online game: https://minesweeper.online/
