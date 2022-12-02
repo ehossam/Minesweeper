@@ -59,7 +59,7 @@ The project is configured with 2 actions (versionsweeper and code-analysis) that
 - The face image changes from the smiley face to a surprised face whenever the user reveals a new tile.
 
 ## Winning Scenario
-Two cases have to be satisfied to declare a win:
+Two requirements have to be satisfied to declare a win:
 - All non-mine tiles have been revealed.
 - All the mine tiles have been flagged.
 
