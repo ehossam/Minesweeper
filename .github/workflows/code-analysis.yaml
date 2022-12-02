@@ -16,7 +16,7 @@ jobs:
 
     # Run .NET Code Analysis
     - name: Run .NET Code Analysis
-      uses: ./
+      uses: dotnet/code-analysis@main
       id: code-analysis
       with:
         project: .\MineSweeper.sln
