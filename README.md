@@ -49,7 +49,7 @@ The project is configured with 2 actions (versionsweeper and code-analysis) that
 
 ## Game Flow
 - Each game starts with a default board size of 17x17 tiles.
-- Users have the ability to customize the board size by changing its width and/or height. Supported width/height range is between 5 to 35. If the user inputs a value out of this range, it will be modified to nearest maximum or minimum value allowed for the range, based on the input number; i.e. if the input is 3, the value will become 5, but if the value is 50, the value will become 35. Modifying such numbers will occur when the game is started.
+- Users have the ability to customize the board size by changing its width and/or height. Supported width/height range is between 5 to 35. If the user inputs a value out of this range, it will be modified to nearest maximum or minimum value allowed for the range, based on the input number, i.e. if the input is 3, the value will become 5, but if the value is 50, the value will become 35. Modifying such numbers will occur when the game is started.
 - To start a game with a new configuration or just restart the game, the face image should be pressed.
 - The locations of mines are determined randomly and their number is determined by the board size such that the number of mines equals 20% of the width*Height of board, approximated to the highest integer, i.e. if the number of tiles is calculated to be 57, it will become 58.
 - The first move determines the location of the mines. The locations of mines are not pre-determined before making the first move. This ensures that the first move, tile reveal, will always succeed and that tile will never contain a mine. Also, adjacent tiles to this first tile will never be mine tiles.
