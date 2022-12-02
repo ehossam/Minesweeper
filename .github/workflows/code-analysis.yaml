@@ -10,14 +10,16 @@ jobs:
       issues: write
       statuses: write
 
-    # Checkout the repo into the workspace within the VM
     steps:
     - uses: actions/checkout@v2
 
+    # Run NuGet restore for each project/solution to analyze
+    - name: Run NuGet restore
+      run: dotnet restore <%path_to_project_or_solution%>
+
+    # Run code analysis for all projects/solutions, such that code analysis violations break the build.
     - name: Run .NET Code Analysis
       uses: dotnet/code-analysis@v1
       id: code-analysis
       with:
-        solution: MySolution.sln
         build-breaking: true
-        all-categories: all
