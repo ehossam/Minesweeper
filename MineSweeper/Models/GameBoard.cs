@@ -207,7 +207,10 @@ namespace Minesweeper.Models
 
             //! 2- If the tile is a mine, call the relevant handler
             if (tileToReveal.IsMine)
+            {
                 HandleMineRevealed();
+                return;
+            }
 
             //! 3- If the tile is a zero, meaning it has no adjacent mines, reveal all its adjacent tiles
             if (0 == tileToReveal.AdjacentMines)
