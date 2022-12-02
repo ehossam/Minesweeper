@@ -1,0 +1,184 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Forms
+@using Minesweeper.Models
+@using Minesweeper.Models.Enums
+@using Minesweeper.Models.Constants
+
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navManager
+
+@* Page Title*@
+<h1>
+    Minesweeper
+</h1>
+
+@* Form to entr the board dimensions*@
+<EditForm Model="@board">
+    <div class="gridsize">
+        <br>
+
+        <p>
+            <label>
+                Board Width:  
+                    <InputNumber class="dimensions-input" min="@GameBoardConstants.MinWidth" step="1" max="@GameBoardConstants.MaxWidth" @bind-Value="iBoardWidth"/>
+            </label>
+        </p>
+    
+        <br>
+    
+        <p>
+            <label>
+                Board Height:
+                    <InputNumber class="dimensions-input" min="@GameBoardConstants.MinHeight" step="1" max="@GameBoardConstants.MaxHeight" @bind-Value="iBoardHeight"/>
+            </label>
+        </p>
+ 
+        <br>
+    </div>
+</EditForm>
+
+@* Code Section*@
+@code {
+    //! Instance of the game board
+    GameBoard board = new GameBoard();
+
+    //! Default board width and height
+    int iBoardWidth = Convert.ToInt32(GameBoardConstants.DefaultWidth);
+    int iBoardHeight = Convert.ToInt32(GameBoardConstants.DefaultHeight);
+
+    /// <summary>
+    /// Reset the board width to be within range
+    /// </summary>
+    private void ResetWidthWithinRange()
+    {
+        iBoardWidth = ((uint)iBoardWidth > GameBoardConstants.MaxWidth) ? Convert.ToInt32(GameBoardConstants.MaxWidth) : ((uint)iBoardWidth < GameBoardConstants.MinWidth) ? Convert.ToInt32(GameBoardConstants.MinWidth) : iBoardWidth;
+    }
+
+    /// <summary>
+    /// Convert a string to an unsigned int represeting the board height
+    /// </summary>
+    private void ResetHeightWithinRange()
+    {
+        iBoardHeight = ((uint)iBoardHeight > GameBoardConstants.MaxHeight) ? Convert.ToInt32(GameBoardConstants.MaxHeight) : ((uint)iBoardHeight < GameBoardConstants.MinHeight) ? Convert.ToInt32(GameBoardConstants.MinHeight) : iBoardHeight;
+    }
+
+    /// <summary>
+    /// Handle the click on the face image
+    /// </summary>
+    private void HandleFaceClicked()
+    {
+        //! Reset both height and width to make sure they are within allowed range
+        ResetWidthWithinRange();
+        ResetHeightWithinRange();
+
+        //! Reset the game board with the new width and height values
+        board.Reset((uint)iBoardWidth, (uint)iBoardHeight);
+    }
+
+    /// <summary>
+    /// Utilitty task to update the stop watch value
+    /// </summary>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        while (GameState.InProgress == board.CurrentState)
+        {
+            await Task.Delay(500);
+            var elapsedTime = Convert.ToUInt32(board.Stopwatch.Elapsed.TotalSeconds);
+
+            //! Max threshold
+            if (elapsedTime != elapsedTime % 1000)
+                elapsedTime = 999;
+
+            var hundreds = GetValueAtPlace(elapsedTime, 100);
+            var tens = GetValueAtPlace(elapsedTime, 10);
+            var ones = GetValueAtPlace(elapsedTime, 1);
+
+            //! Use the js's InvokeAsync function to update the stop watch
+            await _jsRuntime.InvokeAsync<string>("setTime", hundreds, tens, ones);
+        }
+    }
+
+    /// <summary>
+    /// Utility function to get the value of a timer or remaining number of flags(mines) 
+    /// </summary>
+    /// <param name="uiValue"> The entire value of a timer or all number of remaining flags(mines) </param>
+    /// <param name="uiPlace"> The place of the digit in the whole number </param>
+    /// <returns> The digit value at the specified location </returns>
+    private uint GetValueAtPlace(uint uiValue, uint uiPlace)
+    {
+        return (0 == uiValue) ? 0 : ((uiValue % (uiPlace * 10)) - (uiValue % uiPlace)) / uiPlace;
+    }
+}
+
+@* GameBoard Display *@
+<div class="gameboard-display" @oncontextmenu:preventDefault onmousedown="@((GameState.Completed != board.CurrentState && GameState.Failed != board.CurrentState) ? "faceSurprised(event);" : "")" onmouseup=" @((GameState.Completed != board.CurrentState && GameState.Failed != board.CurrentState) ? "faceSmile();" : "")">
+    @* Number of remaining flags *@
+    <div class="time-@GetValueAtPlace(board.RemainingMines, 100)" id="mines_hundreds"></div>
+    <div class="time-@GetValueAtPlace(board.RemainingMines, 10)" id="mines_tens"></div>
+    <div class="time-@GetValueAtPlace(board.RemainingMines, 1)" id="mines_ones"></div>
+
+    @* Display the face according to the game currnet state (smiling, sad, or won) *@
+    @* In all cases, clicking the face button should reset the board *@
+    @if (GameState.Failed == board.CurrentState)
+    {
+        <div class="face-dead" id="face" style="margin-left:70px; margin-right:70px;" @onclick="@(() => { HandleFaceClicked(); })"></div>
+    }
+    else if (GameState.Completed == board.CurrentState)
+    {
+        <div class="face-win" id="face" style="margin-left:70px; margin-right:70px;" @onclick="@(() => { HandleFaceClicked(); })"></div>
+    }
+    else
+    {
+        <div class="face-smile" id="face" style="margin-left:70px; margin-right:70px;" @onclick="@(() => { HandleFaceClicked(); })"></div>
+    }
+
+    @* Stop Watch Display *@
+    <div class="time-@GetValueAtPlace((uint) board.Stopwatch.Elapsed.Seconds,100)" id="seconds_hundreds"></div>
+    <div class="time-@GetValueAtPlace((uint) board.Stopwatch.Elapsed.Seconds,10)" id="seconds_tens"></div>
+    <div class="time-@GetValueAtPlace((uint) board.Stopwatch.Elapsed.Seconds,1)" id="seconds_ones"></div>
+    <br>
+
+    @* Tiles Display *@
+    @for (uint uiHeightIndex = 0; uiHeightIndex < board.Height; uiHeightIndex++)
+    {
+        @* Insert a new line at the beginning of every row *@
+        <br>
+
+        @for (uint uiWidthIndex = 0; uiWidthIndex < board.Width; uiWidthIndex++)
+        {
+            uint uiXCoordinate = uiWidthIndex;
+            uint uiYCoordinate = uiHeightIndex;
+
+            @* Retreive the current tile from the list of tiles *@
+            var currentTile = board.GameTiles.First(tile => tile.XCoordinate == uiXCoordinate && tile.YCoordinate == uiYCoordinate);
+            if (currentTile.IsRevealed)
+            {
+                @* Display a mine time *@
+                if (currentTile.IsMine)
+                {
+                    <div class="tile mine"></div>
+                }
+                @* Display a zero/blank tile *@
+                else if (0 == currentTile.AdjacentMines)
+                {
+                    <div class="tile numbered-0"></div>
+                }
+                @* Display a normal tile that has a number on it *@
+                else
+                {
+                    <div class="tile numbered-@currentTile.AdjacentMines">@currentTile.AdjacentMines</div>
+                }
+            }
+            @* Display a flag on the non-revealed tile *@
+            else if (currentTile.IsFlagged)
+            {
+                <div class="tile flagged" @oncontextmenu="@(() => board.FlagTile(uiXCoordinate, uiYCoordinate))" @oncontextmenu:preventDefault></div>
+            }
+            @* Display a non-revealed and non-flagged tile *@
+            else
+            {
+                <div class="tile unrevealed" @onclick="@(() => board.MakeMove(uiXCoordinate, uiYCoordinate))" @oncontextmenu:preventDefault @oncontextmenu="@(() => board.FlagTile(uiXCoordinate, uiYCoordinate))"></div>
+            }
+        }
+    }
+</div>

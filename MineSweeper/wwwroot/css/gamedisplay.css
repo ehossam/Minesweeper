@@ -1,0 +1,202 @@
+﻿.gameboard-display {
+    line-height: 1;
+    float: left;
+    display: inline-block;
+    font-family: Arial;
+}
+
+.gameboard-display div {
+    float: left;
+    display: inline-block;
+    font-family: Arial;
+    background-image: url(../images/mainBackground.gif);
+}
+
+.tile {
+    min-width: 16px;
+    min-height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    font-size: 0px;
+}
+
+.unrevealed {
+    background-position: 0px -39px;
+}
+
+.flagged  {
+    background-position: -16px -39px;
+}
+
+.mine {
+    background-position: -64px -39px;
+}
+
+.numbered-0 {
+    background-position: 0px -23px;
+}
+
+.numbered-1 {
+    background-position: -16px -23px;
+}
+
+.numbered-2 {
+    background-position: -32px -23px;
+}
+
+.numbered-3 {
+    background-position: -48px -23px;
+}
+
+.numbered-4 {
+    background-position: -64px -23px;
+}
+
+.numbered-5 {
+    background-position: -80px -23px;
+}
+
+.numbered-6 {
+    background-position: -96px -23px;
+}
+
+.numbered-7 {
+    background-position: -112px -23px;
+}
+
+.numbered-8 {
+    background-position: -128px -23px;
+}
+
+.time-0 {
+    background-position: 0 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-1 {
+    background-position: -13px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-2 {
+    background-position: -26px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-3 {
+    background-position: -39px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-4 {
+    background-position: -52px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-5 {
+    background-position: -65px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-6 {
+    background-position: -78px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-7 {
+    background-position: -91px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-8 {
+    background-position: -104px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-9 {
+    background-position: -117px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.time-blank {
+    background-position: -130px 0;
+    width: 13px;
+    height: 23px;
+}
+
+.gameboard-display #mines_hundreds {
+    margin: 4px 0 5px 6px;
+}
+
+.gameboard-display #mines_tens {
+    margin: 4px 0 5px 0px;
+}
+
+.gameboard-display #mines_ones {
+    margin: 4px 0 5px 0px;
+}
+
+.gameboard-display #seconds_hundreds {
+    margin: 4px 0 5px 0;
+}
+
+.gameboard-display #seconds_tens {
+    margin: 4px 0 5px 0;
+}
+
+.gameboard-display #seconds_ones {
+    margin: 4px 6px 5px 0;
+}
+
+.gameboard-display #face {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.gameboard-display .face-smile {
+    background-position: 0px -55px;
+    width: 26px;
+    height: 26px;
+}
+
+.gameboard-display .face-dead {
+    background-position: -78px -55px;
+    width: 26px;
+    height: 26px;
+}
+
+.gameboard-display .face-surprised {
+    background-position: -52px -55px;
+    width: 26px;
+    height: 26px;
+}
+
+.gameboard-display .face-win {
+    background-position: -104px -55px;
+    width: 26px;
+    height: 26px;
+}
+
+.gridsize {
+    background-image: none;
+    line-height: 0; 
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.dimensions-input {
+    min-width: 70px;
+    min-height: 20px;
+    max-width: 70px;
+    max-height: 20px;
+}

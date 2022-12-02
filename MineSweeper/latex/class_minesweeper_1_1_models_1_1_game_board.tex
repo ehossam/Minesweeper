@@ -1,0 +1,109 @@
+\hypertarget{class_minesweeper_1_1_models_1_1_game_board}{}\doxysection{Minesweeper.\+Models.\+Game\+Board Class Reference}
+\label{class_minesweeper_1_1_models_1_1_game_board}\index{Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a73b08f93b742b8d419a8a6dbc4510121}\label{class_minesweeper_1_1_models_1_1_game_board_a73b08f93b742b8d419a8a6dbc4510121}} 
+{\bfseries Game\+Board} ()
+\begin{DoxyCompactList}\small\item\em Constructor  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_minesweeper_1_1_models_1_1_game_board_a25ac044c074802fa196c8fded84ea870}{Reset}} (uint ui\+Width=Game\+Board\+Constants.\+Default\+Width, uint ui\+Height=Game\+Board\+Constants.\+Default\+Height)
+\begin{DoxyCompactList}\small\item\em Reset the board with the specified width and height if specified  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_minesweeper_1_1_models_1_1_game_board_ad612a6f47697b5ba67e569b16ad6c9dc}{Make\+Move}} (uint ui\+XCooridnate, uint ui\+YCooridnate)
+\begin{DoxyCompactList}\small\item\em Make a move on the board for the tile specified in X,Y coordinates  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_minesweeper_1_1_models_1_1_game_board_a9f4b77fec95dd5e16a2ce42c69bc2946}{Flag\+Tile}} (uint ui\+XCooridnate, uint ui\+YCooridnate)
+\begin{DoxyCompactList}\small\item\em Flag the tile specified by its X and Y coordinates  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a5e2387b29b5681e6481370d524c4635e}\label{class_minesweeper_1_1_models_1_1_game_board_a5e2387b29b5681e6481370d524c4635e}} 
+uint {\bfseries Width} = Game\+Board\+Constants.\+Default\+Width\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Width for the game board  \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_afcc9171c6bd1f502d9c2e3d57fd79fd4}\label{class_minesweeper_1_1_models_1_1_game_board_afcc9171c6bd1f502d9c2e3d57fd79fd4}} 
+uint {\bfseries Height} = Game\+Board\+Constants.\+Default\+Height\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Height for the game board  \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a9236cad8fb8db4f8241432e63ab5380e}\label{class_minesweeper_1_1_models_1_1_game_board_a9236cad8fb8db4f8241432e63ab5380e}} 
+uint {\bfseries Number\+Of\+Mines} = Game\+Board\+Constants.\+Default\+Number\+Of\+Mines\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Number of mines for the game board  \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a175ff26576252f60cf291ac7e09e737d}\label{class_minesweeper_1_1_models_1_1_game_board_a175ff26576252f60cf291ac7e09e737d}} 
+List$<$ \mbox{\hyperlink{class_minesweeper_1_1_models_1_1_tile}{Tile}} $>$ {\bfseries Game\+Tiles} = new List$<$\mbox{\hyperlink{class_minesweeper_1_1_models_1_1_tile}{Tile}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em List of the tiles for the game board  \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_adf633de578eab23632c1e29796183d81}\label{class_minesweeper_1_1_models_1_1_game_board_adf633de578eab23632c1e29796183d81}} 
+\mbox{\hyperlink{namespace_minesweeper_1_1_models_1_1_enums_a14fc3dfbace2b0bc725738b2b6ea2023}{Game\+State}} {\bfseries Current\+State}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em State of the game  \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_ae782d68cb5d29071fe75baa5ae5909bf}\label{class_minesweeper_1_1_models_1_1_game_board_ae782d68cb5d29071fe75baa5ae5909bf}} 
+Stopwatch {\bfseries Stopwatch} = new Stopwatch()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Stopwatch used for the game  \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a2c29412bdcee62219b73cbf8bcd31ace}\label{class_minesweeper_1_1_models_1_1_game_board_a2c29412bdcee62219b73cbf8bcd31ace}} 
+uint {\bfseries Remaining\+Mines}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Remaining number of mines  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a9f4b77fec95dd5e16a2ce42c69bc2946}\label{class_minesweeper_1_1_models_1_1_game_board_a9f4b77fec95dd5e16a2ce42c69bc2946}} 
+\index{Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}!FlagTile@{FlagTile}}
+\index{FlagTile@{FlagTile}!Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}}
+\doxysubsubsection{\texorpdfstring{FlagTile()}{FlagTile()}}
+{\footnotesize\ttfamily void Minesweeper.\+Models.\+Game\+Board.\+Flag\+Tile (\begin{DoxyParamCaption}\item[{uint}]{ui\+XCooridnate,  }\item[{uint}]{ui\+YCooridnate }\end{DoxyParamCaption})}
+
+
+
+Flag the tile specified by its X and Y coordinates  
+
+
+\begin{DoxyParams}{Parameters}
+{\em ui\+XCooridnate} & X coordinate\\
+\hline
+{\em ui\+YCooridnate} & Y coordinate\\
+\hline
+\end{DoxyParams}
+If the game is already finished, don\textquotesingle{}t make the move and return
+
+Get the tile to flag
+
+Check that there are more flags to use
+
+Flip the flag on the tile
+
+Check if the game is already completed by now (putting a flag at the end may be needed to mark the game as completed)\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_ad612a6f47697b5ba67e569b16ad6c9dc}\label{class_minesweeper_1_1_models_1_1_game_board_ad612a6f47697b5ba67e569b16ad6c9dc}} 
+\index{Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}!MakeMove@{MakeMove}}
+\index{MakeMove@{MakeMove}!Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}}
+\doxysubsubsection{\texorpdfstring{MakeMove()}{MakeMove()}}
+{\footnotesize\ttfamily void Minesweeper.\+Models.\+Game\+Board.\+Make\+Move (\begin{DoxyParamCaption}\item[{uint}]{ui\+XCooridnate,  }\item[{uint}]{ui\+YCooridnate }\end{DoxyParamCaption})}
+
+
+
+Make a move on the board for the tile specified in X,Y coordinates  
+
+
+\begin{DoxyParams}{Parameters}
+{\em ui\+XCooridnate} & X coordinate \\
+\hline
+{\em ui\+YCooridnate} & Y coordinate \\
+\hline
+\end{DoxyParams}
+If the game is already finished, don\textquotesingle{}t make the move and return
+
+Make the first move if it\textquotesingle{}s the first
+
+Reveal the tile\mbox{\Hypertarget{class_minesweeper_1_1_models_1_1_game_board_a25ac044c074802fa196c8fded84ea870}\label{class_minesweeper_1_1_models_1_1_game_board_a25ac044c074802fa196c8fded84ea870}} 
+\index{Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}!Reset@{Reset}}
+\index{Reset@{Reset}!Minesweeper.Models.GameBoard@{Minesweeper.Models.GameBoard}}
+\doxysubsubsection{\texorpdfstring{Reset()}{Reset()}}
+{\footnotesize\ttfamily void Minesweeper.\+Models.\+Game\+Board.\+Reset (\begin{DoxyParamCaption}\item[{uint}]{ui\+Width = {\ttfamily GameBoardConstants.DefaultWidth},  }\item[{uint}]{ui\+Height = {\ttfamily GameBoardConstants.DefaultHeight} }\end{DoxyParamCaption})}
+
+
+
+Reset the board with the specified width and height if specified  
+
+
+\begin{DoxyParams}{Parameters}
+{\em ui\+Width} & Board width \\
+\hline
+{\em ui\+Height} & Board height \\
+\hline
+\end{DoxyParams}
+Initialize the board
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Models/Game\+Board.\+cs\end{DoxyCompactItemize}
