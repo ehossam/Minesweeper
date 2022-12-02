@@ -1,25 +1,30 @@
 name: '.net code analysis'
 on: [push, pull_request]
 
-# Run on the latest version of Ubuntu
 jobs:
   code-analysis:
+    name: .NET Code Analysis runner
+
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
-      statuses: write
 
     steps:
+      # Checkout your code repository to scan
     - uses: actions/checkout@v2
 
-    # Run NuGet restore for each project/solution to analyze
+    # Run NuGet restore for the solution at repo root
     - name: Run NuGet restore
-      run: dotnet restore <%path_to_project_or_solution%>
+      run: dotnet restore
 
-    # Run code analysis for all projects/solutions, such that code analysis violations break the build.
+    # Run code analysis for the solution at repo root
     - name: Run .NET Code Analysis
-      uses: dotnet/code-analysis@v1
+      uses: dotnet/code-analysis@main
       id: code-analysis
       with:
-        build-breaking: true
+        build-breaking: false
+
+    # Upload the analysis results file
+    - name: Upload analysis results
+      uses: actions/upload-artifact@v2
+      with:
+        name: analysis_results.sarif
+        path: ${{ steps.code-analysis.outputs.sarifFile }}
