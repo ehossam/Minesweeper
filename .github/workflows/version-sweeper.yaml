@@ -1,0 +1,28 @@
+name: '.net version sweeper'
+on: [push, pull_request]
+
+# Run on the latest version of Ubuntu
+jobs:
+  version-sweep:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      statuses: write
+
+    # Checkout the repo into the workspace within the VM
+    steps:
+    - uses: actions/checkout@v2
+
+    # Run the .NET version sweeper
+    # Issues will be automatically created for any non-ignored projects that are targeting non-LTS versions
+    - name: .NET version sweeper
+      id: dotnet-version-sweeper
+      uses: dotnet/versionsweeper@v1.8
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        owner: ${{ github.repository_owner }}
+        name: ${{ github.repository }}
+        branch: ${{ github.ref }}
+        sdkCompliance: true
